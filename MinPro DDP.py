@@ -1,8 +1,55 @@
+# Registrasi username dan password
+def login (nama,password):
+    benar = False
+    file = open("password.txt", "r")
+    for i in file:
+        a,b = i.split(",")
+        b = b.strip()
+        if(a==nama and b==password):
+            benar = True
+            break
+    file.close
+    if(benar):
+        print("login berhasil, silakan masuk")
+    else:
+        print("belum terdaftar, silakan registrasi")
+
+def registrasi(nama,password):
+    file = open("password.txt", "a")
+    file.write("\n"+nama+","+password)
+
+def access(option):
+    global nama
+    if(option == "login"):
+        nama = input("masukkan ID: ")
+        password = input("Masukkan Password: ")
+        login(nama,password)
+    else:
+        print("Masukkan ID dan password baru")
+        nama = input("Masukkan ID: ")
+        password = input("Masukkan password: ")
+        registrasi(nama,password)
+        print("registrasi anda berhasil, silakan masuk")
+
+def begin():
+    global option
+    print("Selamat datang di program pendataan KTA")
+    print("Ketik (login) jika sudah punya username")
+    print("Ketik (regis) jika belum punya username")
+    option = input("Silakan ketik (login/regis) : ")
+    print("=" * 50)
+    if (option!="login" and option!="regis"):
+        begin()
+
+begin()
+access(option)
+
+
 # Program Pendataan Kartu Tanda Anggota (KTA) Pramuka
 print("-" * 50) 
 print("Nama: Ahmad Afif Al Ghifary")
 print("NIM: 2509116002")
-print("Tugas: Mini Project 1 DDP")
+print("Tugas: Mini Project 2 DDP")
 print("Kelas: Sistem Informasi A 2025")
 print("-" * 50)
 
